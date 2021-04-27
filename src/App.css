@@ -1,3 +1,18 @@
+@font-face {
+    font-family: "MADE Soulmaze Italic";
+    src: url('Soulmaze.otf');
+}
+
+@media (min-width: 480px) {
+
+body{
+  overflow: hidden;
+}
+}
+
+.card{
+  border: none;
+}
 .App {
   text-align: center;
 }
@@ -35,4 +50,33 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.searchbar {
+  padding-top:10px;
+    position: relative;
+    display: flex;
+}
+
+.searchbar > input {
+    width: 100%;
+}
+
+.searchbar-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+}
+
+.searchbar-item {
+    padding: 5px;
+    border: 1px solid darkgray;
+    border-top: none;
+    background: white;
+    cursor: pointer;
+}
+
+.searchbar-item:hover {
+    background: #e3e3e3
 }
