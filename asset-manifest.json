@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/React-Pokedex/static/css/main.2c7484f1.chunk.css",
+    "main.js": "/React-Pokedex/static/js/main.5433c7f3.chunk.js",
+    "main.js.map": "/React-Pokedex/static/js/main.5433c7f3.chunk.js.map",
+    "runtime-main.js": "/React-Pokedex/static/js/runtime-main.42cf09fc.js",
+    "runtime-main.js.map": "/React-Pokedex/static/js/runtime-main.42cf09fc.js.map",
+    "static/js/2.11cfdc8c.chunk.js": "/React-Pokedex/static/js/2.11cfdc8c.chunk.js",
+    "static/js/2.11cfdc8c.chunk.js.map": "/React-Pokedex/static/js/2.11cfdc8c.chunk.js.map",
+    "static/js/3.010dcc05.chunk.js": "/React-Pokedex/static/js/3.010dcc05.chunk.js",
+    "static/js/3.010dcc05.chunk.js.map": "/React-Pokedex/static/js/3.010dcc05.chunk.js.map",
+    "index.html": "/React-Pokedex/index.html",
+    "static/css/main.2c7484f1.chunk.css.map": "/React-Pokedex/static/css/main.2c7484f1.chunk.css.map",
+    "static/js/2.11cfdc8c.chunk.js.LICENSE.txt": "/React-Pokedex/static/js/2.11cfdc8c.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/React-Pokedex/static/media/Soulmaze.aaeb417f.otf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.42cf09fc.js",
+    "static/js/2.11cfdc8c.chunk.js",
+    "static/css/main.2c7484f1.chunk.css",
+    "static/js/main.5433c7f3.chunk.js"
+  ]
+}
