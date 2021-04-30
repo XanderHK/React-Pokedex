@@ -52,10 +52,11 @@ function getNamesFromEvoChain(object: any): any {
  * @param name 
  * @returns 
  */
-export function getSpriteFromPokemon(name: string): Promise<any> {
+export async function getSpriteFromPokemon(name: string): Promise<any> {
     const url = `https://pokeapi.co/api/v2/pokemon/${name}`;
+    const exists: boolean = await urlExists(url);
+    if (!exists) return;
     return axios.get(url).then(res => res.data.sprites.front_default)
-
 }
 
 /**

@@ -96,9 +96,9 @@ class Pokemon extends React.Component<Props, State> {
     }
 
     public setEvolutionSprites = async () => {
-        const sprites = new Set();
+        const sprites: Set<string> = new Set();
         for (const pokemonName of this.state.pokemonEvolutionChain) {
-            const response = await getSpriteFromPokemon(pokemonName);
+            const response: string = await getSpriteFromPokemon(pokemonName);
             sprites.add(response);
         }
         this.setState({
