@@ -1,12 +1,13 @@
 import React from 'react'
 import { getAllPokemonNames } from '../api/api'
+import { fNumberEmptyPromise } from '../types/types';
 
 type Props = {
-    parsePokemon: any;
+    parsePokemon: fNumberEmptyPromise;
 }
 
 type State = {
-    matches: any;
+    matches: { name: string, id: number }[];
 }
 
 class Searchbar extends React.Component<Props, State> {
@@ -34,7 +35,7 @@ class Searchbar extends React.Component<Props, State> {
 
         const names = await getAllPokemonNames();
 
-        const matches = names.filter((e: any) => {
+        const matches: { name: string, id: number }[] = names.filter((e: any) => {
             if (e.name.includes(input)) {
                 return e
             }

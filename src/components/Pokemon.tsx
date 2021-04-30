@@ -1,5 +1,5 @@
 import React from 'react'
-import { getPokemon } from '../api/api'
+import { getPokemon, getSpriteFromPokemon } from '../api/api'
 import PokemonCard from './PokemonCard'
 import Searchbar from './Searchbar'
 import FastAverageColor from 'fast-average-color';
@@ -20,54 +20,52 @@ type State = {
     pokemonHeight: number;
     pokemonWeight: number;
     pokemonStats: { statAmount: number, statName: string }[];
-    pokemonDescription: string
+    pokemonDescription: string;
+    pokemonEvolutionChain: string[];
+    pokemonEvolutionSprites: string[];
 };
 
 class Pokemon extends React.Component<Props, State> {
 
-    private fac = new FastAverageColor();
-
-    public constructor(props: Props) {
-        super(props)
-        this.state = {
-            pokemonNr: 1,
-            pokemonName: '',
-            pokemonImageUrl: '',
-            pokemonTypes: '',
-            pokemonBackground: '',
-            pokemonHeight: 0,
-            pokemonWeight: 0,
-            pokemonStats: [],
-            pokemonDescription: ''
-        }
-    }
+    private fac: IFastAverageColor = new FastAverageColor();
+    private firstPokemon: number = 1;
 
     public componentDidMount(): void {
 
-        this.parsePokemon(this.state.pokemonNr);
+        this.parsePokemon(this.firstPokemon);
     }
 
+    /**
+     * 
+     */
     private prev = (): void => {
 
         if (this.state.pokemonNr === 0) return;
 
-        this.parsePokemon(this.state.pokemonNr as number - 1);
+        this.parsePokemon(this.state.pokemonNr - 1);
     }
 
+    /**
+     * 
+     */
     private next = async (): Promise<void> => {
 
         let increment = 1;
         if (this.state.pokemonNr === 0) increment = 2;
 
-        this.parsePokemon(this.state.pokemonNr as number + increment);
+        this.parsePokemon(this.state.pokemonNr + increment);
     }
 
+    /**
+     * 
+     * @param number 
+     */
     private parsePokemon = async (number: number): Promise<void> => {
 
-        const pokemon = await getPokemon(number);
-        if (pokemon.hasOwnProperty('setInitial')) {
-            number = pokemon.setInitial;
+        if (typeof number === 'string') {
+            number = parseInt(number, 10)
         }
+        const pokemon = await getPokemon(number);
 
         this.setState({
             pokemonNr: number,
@@ -77,14 +75,19 @@ class Pokemon extends React.Component<Props, State> {
             pokemonWeight: pokemon.weight,
             pokemonHeight: pokemon.height,
             pokemonStats: pokemon.formattedStats,
-            pokemonDescription: pokemon.description
+            pokemonDescription: pokemon.description,
+            pokemonEvolutionChain: pokemon.evolutionChain,
+            pokemonEvolutionSprites: []
         });
 
 
-        this.setBackground();
+        await this.setBackground();
+        await this.setEvolutionSprites();
     }
 
-
+    /**
+     * 
+     */
     public setBackground = async () => {
         const fullColor = await this.fac.getColorAsync(this.state.pokemonImageUrl);
         this.setState({
@@ -92,7 +95,19 @@ class Pokemon extends React.Component<Props, State> {
         })
     }
 
+    public setEvolutionSprites = async () => {
+        const sprites = new Set();
+        for (const pokemonName of this.state.pokemonEvolutionChain) {
+            const response = await getSpriteFromPokemon(pokemonName);
+            sprites.add(response);
+        }
+        this.setState({
+            pokemonEvolutionSprites: Array.from(sprites) as string[]
+        });
+    }
+
     public render() {
+        if (this.state === null) return <div />;
         return (
             <div className="container-fluid vh-100">
                 <div className="row h-100">
@@ -105,7 +120,6 @@ class Pokemon extends React.Component<Props, State> {
                         <PokemonCard
                             prev={this.prev}
                             next={this.next}
-                            parsePokemon={this.parsePokemon}
                             imgSrc={this.state.pokemonImageUrl}
                             types={this.state.pokemonTypes}
                             background={this.state.pokemonBackground}
@@ -119,13 +133,15 @@ class Pokemon extends React.Component<Props, State> {
                             name={this.state.pokemonName}
                             stats={this.state.pokemonStats}
                             description={this.state.pokemonDescription}
+                            evolutionChain={this.state.pokemonEvolutionChain}
+                            evolutionSprites={this.state.pokemonEvolutionSprites}
                         />
                         <div className="align-self-center" style={{ bottom: 0, position: 'absolute', right: 0 }}>
                             <a style={{ color: 'inherit' }} href="https://github.com/XanderHK" target="_blank" rel="noreferrer"><FontAwesomeIcon icon={faGithub} size="2x" /></a>
                         </div>
                     </div>
                 </div>
-            </div >
+            </div>
         );
     }
 }

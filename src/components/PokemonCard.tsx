@@ -1,14 +1,13 @@
 import React from 'react'
 import Type from './Type'
-import Searchbar from './Searchbar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { fEmptyVoid } from '../types/types'
 
 type Props = {
-    prev: any;
-    next: any;
-    parsePokemon: any;
+    prev: fEmptyVoid;
+    next: fEmptyVoid;
     imgSrc: string;
     types: any;
     background: string;
