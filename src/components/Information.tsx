@@ -1,5 +1,7 @@
 import React from 'react'
 import Stat from './Stat'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
 type Props = {
     weight: number;
@@ -46,9 +48,13 @@ class Information extends React.Component<Props> {
                                 <img key={index} src={src} alt="" />
                             ))}
                         </div>
+                        <hr></hr>
+                        <div className="d-flex justify-content-end align-bottom">
+                            <a style={{ color: 'inherit' }} href="https://github.com/XanderHK" target="_blank" rel="noreferrer"><FontAwesomeIcon icon={faGithub} size="2x" /></a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </div >
         )
     }
 }

@@ -4,8 +4,6 @@ import PokemonCard from './PokemonCard'
 import Searchbar from './Searchbar'
 import FastAverageColor from 'fast-average-color';
 import Information from './Information'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
 type Props = {
 
@@ -136,9 +134,6 @@ class Pokemon extends React.Component<Props, State> {
                             evolutionChain={this.state.pokemonEvolutionChain}
                             evolutionSprites={this.state.pokemonEvolutionSprites}
                         />
-                        <div className="align-self-center" style={{ bottom: 0, position: 'absolute', right: 0 }}>
-                            <a style={{ color: 'inherit' }} href="https://github.com/XanderHK" target="_blank" rel="noreferrer"><FontAwesomeIcon icon={faGithub} size="2x" /></a>
-                        </div>
                     </div>
                 </div>
             </div>
