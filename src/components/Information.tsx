@@ -27,29 +27,26 @@ class Information extends React.Component<Props> {
                         <h2 className="d-flex align-self-start">{this.props.name.toUpperCase()} #{this.props.id}</h2>
                         <p className="d-flex align-self-start">{this.props.description}</p>
                         <div>
-                            <h2 className="d-flex align-self-start">Pokémon stats</h2>
+                            <h2 className="d-flex align-self-start">Stats</h2>
                             <div className="row g-2">
                                 {this.props.stats.map((stat: { statAmount: number, statName: string }, index: number) => (
                                     <Stat key={index} name={stat.statName} amount={stat.statAmount} />
                                 ))}
                             </div>
                         </div>
-                        <h2 className="d-flex align-self-start">Pokémon anthropometry</h2>
+                        <h2 className="d-flex align-self-start">Anthropometry</h2>
                         <div className="row">
                             <div className="d-flex align-self-start col-sm-6"><div className="p-3 border bg-light w-100">Height {(this.props.height * 0.1).toFixed(2)}M</div></div>
                             <div className="d-flex align-self-start col-sm-6"><div className="p-3 border bg-light w-100">Weight {(this.props.weight * 0.1).toFixed(2)}KG</div></div>
                         </div>
                         <div>
-                            <h2 className="d-flex align-self-start">Pokémon evolutions</h2>
-                            {/* {this.props.evolutionChain.map((evo: string, index: number) => (
-                                <div className="d-flex align-self-start" key={index}>{evo}</div>
-                            ))} */}
+                            <h2 className="d-flex align-self-start">Evolutions</h2>
                             {this.props.evolutionSprites.map((src: string, index: number) => (
                                 <img key={index} src={src} alt="" />
                             ))}
                         </div>
                         <hr></hr>
-                        <div className="d-flex justify-content-end align-bottom">
+                        <div className="d-flex justify-content-end align-bottom" style={{ bottom: 0 }}>
                             <a style={{ color: 'inherit' }} href="https://github.com/XanderHK" target="_blank" rel="noreferrer"><FontAwesomeIcon icon={faGithub} size="2x" /></a>
                         </div>
                     </div>

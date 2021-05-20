@@ -3,6 +3,10 @@
     src: url('Soulmaze.otf');
 }
 
+body{
+  font-family: monospace;
+}
+
 @media (min-width: 480px) {
 
 body{
