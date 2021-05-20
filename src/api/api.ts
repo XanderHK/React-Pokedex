@@ -111,3 +111,5 @@ export async function getPokemon(id: number): Promise<any> {
     response.evolutionChain = await getEvolutionChain(response.species.url);
     return await response;
 }
+
+//
