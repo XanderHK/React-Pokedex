@@ -7,7 +7,7 @@ type Props = {
     weight: number;
     height: number;
     name: string;
-    stats: { statAmount: number, statName: string }[];
+    stats: { amount: number, name: string }[];
     description: string;
     id: number;
     evolutionChain: string[];
@@ -29,8 +29,8 @@ class Information extends React.Component<Props> {
                         <div>
                             <h2 className="d-flex align-self-start">Stats</h2>
                             <div className="row g-2">
-                                {this.props.stats.map((stat: { statAmount: number, statName: string }, index: number) => (
-                                    <Stat key={index} name={stat.statName} amount={stat.statAmount} />
+                                {this.props.stats.map((stat: { amount: number, name: string }, index: number) => (
+                                    <Stat key={index} name={stat.name} amount={stat.amount} />
                                 ))}
                             </div>
                         </div>

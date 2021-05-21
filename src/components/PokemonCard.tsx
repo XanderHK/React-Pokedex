@@ -21,8 +21,9 @@ class Card extends React.Component<Props> {
     }
 
     public render() {
+        console.log(this.props.types)
         const types: any = Object.values(this.props.types).map((type: any, index: number) => {
-            return <Type type={type.type.name} key={index} />
+            return <Type type={type} key={index} />
         });
         const pokemonImage = React.createElement('img', { id: 'pokemonImage', className: 'card-img-top', src: this.props.imgSrc, alt: 'no image available', onError: this.handleError });
         const prevBtn = React.createElement('button', { onClick: this.props.prev, className: 'btn' }, <FontAwesomeIcon icon={faArrowLeft} />);

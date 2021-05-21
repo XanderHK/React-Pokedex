@@ -1,5 +1,5 @@
 import React from 'react'
-import { getPokemon, getSpriteFromPokemon } from '../api/api'
+import { getPokemon } from '../api/api'
 import PokemonCard from './PokemonCard'
 import Searchbar from './Searchbar'
 import FastAverageColor from 'fast-average-color';
@@ -17,7 +17,7 @@ type State = {
     pokemonBackground: string;
     pokemonHeight: number;
     pokemonWeight: number;
-    pokemonStats: { statAmount: number, statName: string }[];
+    pokemonStats: { amount: number, name: string }[];
     pokemonDescription: string;
     pokemonEvolutionChain: string[];
     pokemonEvolutionSprites: string[];
@@ -59,12 +59,11 @@ class Pokemon extends React.Component<Props, State> {
      * @param number 
      */
     private parsePokemon = async (number: number): Promise<void> => {
-
         if (typeof number === 'string') {
             number = parseInt(number, 10)
         }
         const pokemon = await getPokemon(number);
-
+        console.log(pokemon)
         this.setState({
             pokemonNr: number,
             pokemonName: pokemon.name,
@@ -72,15 +71,15 @@ class Pokemon extends React.Component<Props, State> {
             pokemonTypes: pokemon.types,
             pokemonWeight: pokemon.weight,
             pokemonHeight: pokemon.height,
-            pokemonStats: pokemon.formattedStats,
+            pokemonStats: pokemon.stats,
             pokemonDescription: pokemon.description,
-            pokemonEvolutionChain: pokemon.evolutionChain,
-            pokemonEvolutionSprites: []
+            pokemonEvolutionChain: pokemon.evolutions,
+            pokemonEvolutionSprites: pokemon.evolutionSprites
         });
 
 
         await this.setBackground();
-        await this.setEvolutionSprites();
+        // await this.setEvolutionSprites();
     }
 
     /**
@@ -91,17 +90,6 @@ class Pokemon extends React.Component<Props, State> {
         this.setState({
             pokemonBackground: fullColor.hex
         })
-    }
-
-    public setEvolutionSprites = async () => {
-        const sprites: Set<string> = new Set();
-        for (const pokemonName of this.state.pokemonEvolutionChain) {
-            const response: string = await getSpriteFromPokemon(pokemonName);
-            sprites.add(response);
-        }
-        this.setState({
-            pokemonEvolutionSprites: Array.from(sprites) as string[]
-        });
     }
 
     public render() {
