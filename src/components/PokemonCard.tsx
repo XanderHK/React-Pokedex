@@ -21,7 +21,6 @@ class Card extends React.Component<Props> {
     }
 
     public render() {
-        console.log(this.props.types)
         const types: any = Object.values(this.props.types).map((type: any, index: number) => {
             return <Type type={type} key={index} />
         });

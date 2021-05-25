@@ -63,7 +63,6 @@ class Pokemon extends React.Component<Props, State> {
             number = parseInt(number, 10)
         }
         const pokemon = await getPokemon(number);
-        console.log(pokemon)
         this.setState({
             pokemonNr: number,
             pokemonName: pokemon.name,
@@ -79,7 +78,6 @@ class Pokemon extends React.Component<Props, State> {
 
 
         await this.setBackground();
-        // await this.setEvolutionSprites();
     }
 
     /**
