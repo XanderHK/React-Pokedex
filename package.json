@@ -1,6 +1,6 @@
 {
   "name": "reactpokemon",
-  "homepage": "http://xanderhk.github.io/React-Pokedex",
+  "homepage": "https://pokedex.xanderhk.nl/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
