@@ -76,7 +76,6 @@ class Pokemon extends React.Component<Props, State> {
             pokemonEvolutionSprites: pokemon.evolutionSprites
         });
 
-
         await this.setBackground();
     }
 
