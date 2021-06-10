@@ -21,7 +21,11 @@ class Searchbar extends React.Component<Props, State> {
         }
     }
 
-
+    /**
+     * Gets the input from the search bar and showcases the first 8 results
+     * @param event 
+     * @returns void
+     */
     private getInput = async (event: any) => {
 
         const input: string = event.target.value.toLowerCase();
@@ -47,6 +51,10 @@ class Searchbar extends React.Component<Props, State> {
         });
     }
 
+    /**
+     * calls the parsePokemon method from the pokemon component
+     * @param number 
+     */
     public setPokemon(number: number) {
         this.props.parsePokemon(number);
     }

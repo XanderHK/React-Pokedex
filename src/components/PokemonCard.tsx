@@ -16,6 +16,10 @@ type Props = {
 
 class Card extends React.Component<Props> {
 
+    /**
+     * Changes the event source if there is an error
+     * @param event 
+     */
     private handleError(event: any) {
         event.target.src = "placeholder.png"
     }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { getPokemon } from '../api/api'
 import PokemonCard from './PokemonCard'
 import Searchbar from './Searchbar'
@@ -23,7 +23,7 @@ type State = {
     pokemonEvolutionSprites: string[];
 };
 
-class Pokemon extends React.Component<Props, State> {
+class Pokemon extends Component<Props, State> {
 
     private fac: IFastAverageColor = new FastAverageColor();
     private firstPokemon: number = 1;
@@ -34,7 +34,7 @@ class Pokemon extends React.Component<Props, State> {
     }
 
     /**
-     * 
+     * Decrements the id
      */
     private prev = (): void => {
 
@@ -44,7 +44,7 @@ class Pokemon extends React.Component<Props, State> {
     }
 
     /**
-     * 
+     * Increments the id 
      */
     private next = async (): Promise<void> => {
 
@@ -55,7 +55,7 @@ class Pokemon extends React.Component<Props, State> {
     }
 
     /**
-     * 
+     * Gets the information and parses it so it can be used by the app
      * @param number 
      */
     private parsePokemon = async (number: number): Promise<void> => {
@@ -80,7 +80,7 @@ class Pokemon extends React.Component<Props, State> {
     }
 
     /**
-     * 
+     * Alters the background
      */
     public setBackground = async () => {
         const fullColor = await this.fac.getColorAsync(this.state.pokemonImageUrl);
